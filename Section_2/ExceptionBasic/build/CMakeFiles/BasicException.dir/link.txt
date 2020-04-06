@@ -1,0 +1,1 @@
+/usr/bin/g++    -rdynamic CMakeFiles/BasicException.dir/src/BasicException.cpp.o  -o BasicException 

@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/suhail/Documents/Codes/Udemy_cpp/Section 1/ExceptionCacthingOrder/src/ExceptionCatingOrder.cpp
+iostream
+-
+

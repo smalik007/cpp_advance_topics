@@ -1,0 +1,1 @@
+/usr/bin/g++    -rdynamic CMakeFiles/StandardException.dir/src/StandardException.cpp.o  -o StandardException 
