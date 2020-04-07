@@ -65,7 +65,7 @@ int main() {
   test.insert(Test(10, "Mike"));
   test.insert(Test(20, "Mike"));  // won't insert as the element is duplicated
   test.insert(Test(20, "Joey"));
-  test.insert(Test(10, "Sue"));  // But this could work even thought the id is same, the reason for this we have overloaded < operator for string and not the id
+  test.insert(Test(10, "Sue"));  // But this could work even thoug the id is same, the reason for this we have overloaded < operator for string and not the id
 
   set<Test>::iterator testIt = test.begin();
   cout << endl;
