@@ -1,3 +1,0 @@
-/home/suhail/Documents/Codes/Udemy_cpp/ExceptionBasic/build/CMakeFiles/rebuild_cache.dir
-/home/suhail/Documents/Codes/Udemy_cpp/ExceptionBasic/build/CMakeFiles/BasicException.dir
-/home/suhail/Documents/Codes/Udemy_cpp/ExceptionBasic/build/CMakeFiles/edit_cache.dir

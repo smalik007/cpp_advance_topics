@@ -1,3 +1,0 @@
-/home/suhail/Documents/Codes/Udemy_cpp/Section_3/ReadingAndWritingBinaryFiles/build/CMakeFiles/rebuild_cache.dir
-/home/suhail/Documents/Codes/Udemy_cpp/Section_3/ReadingAndWritingBinaryFiles/build/CMakeFiles/RunProgram.dir
-/home/suhail/Documents/Codes/Udemy_cpp/Section_3/ReadingAndWritingBinaryFiles/build/CMakeFiles/edit_cache.dir

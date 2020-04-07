@@ -1,3 +1,0 @@
-/home/suhail/Documents/Codes/Udemy_cpp/Section 1/StandartException/build/CMakeFiles/rebuild_cache.dir
-/home/suhail/Documents/Codes/Udemy_cpp/Section 1/StandartException/build/CMakeFiles/StandardException.dir
-/home/suhail/Documents/Codes/Udemy_cpp/Section 1/StandartException/build/CMakeFiles/edit_cache.dir

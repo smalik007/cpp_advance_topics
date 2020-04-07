@@ -1,3 +1,0 @@
-/home/suhail/Documents/Codes/Udemy_cpp/Section_4/TwoDimensionalVectors/build/CMakeFiles/rebuild_cache.dir
-/home/suhail/Documents/Codes/Udemy_cpp/Section_4/TwoDimensionalVectors/build/CMakeFiles/RunProgram.dir
-/home/suhail/Documents/Codes/Udemy_cpp/Section_4/TwoDimensionalVectors/build/CMakeFiles/edit_cache.dir

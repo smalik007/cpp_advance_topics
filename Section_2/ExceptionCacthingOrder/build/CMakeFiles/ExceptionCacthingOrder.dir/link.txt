@@ -1,1 +1,0 @@
-/usr/bin/g++    -rdynamic CMakeFiles/ExceptionCacthingOrder.dir/src/ExceptionCatingOrder.cpp.o  -o ExceptionCacthingOrder 

@@ -1,1 +1,0 @@
-/usr/bin/g++    -rdynamic CMakeFiles/RunProgram.dir/src/WritingTxtFile.cpp.o  -o RunProgram 
