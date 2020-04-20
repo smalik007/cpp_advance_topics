@@ -65,12 +65,14 @@ class ring<T>::iterator {
 
   /* There are two version of ++ operator, prefix and postfix, below is for prefix ++ operator */
   iterator& operator++() {
+    cout << "Using Prefix notation" << endl;
     _pos++;
     return *this;
   }
 
   /* Posfix look like this, taking a extra parameter in bracket */
   iterator& operator++(int) {
+    cout << "Using Postfix notation" << endl;
     _pos++;
     return *this;
   }

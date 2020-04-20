@@ -40,6 +40,7 @@ int main() {
 
   cout << "output using iterator" << endl;
   ring<string>::iterator it = ptrBuffer->begin();
+  /* Try and use prefix/postfix notation */
   for (; it != ptrBuffer->end(); it++) {
     cout << *it << endl;
   }
@@ -50,6 +51,7 @@ int main() {
   cout << "output usin range based loop" << endl;
 
   /* Here I used unique pointer and derefrenced it to get the class intance type */
+  /* Auto uses prefix notation */
   for (auto itr : *ptrBuffer) {
     cout << itr << endl;
   }
