@@ -13,8 +13,9 @@
 using namespace std;
 
 int main() {
-  shared_ptr<ring<string>> ptr;
-  ptr = make_shared<ring<string>>(3);
+  shared_ptr<ring<string>> ptrBuffer;
+  ptrBuffer = make_shared<ring<string>>(3);
+
   // ring<string> myBuffer(3);
 
   // myBuffer.add("one");
@@ -26,16 +27,35 @@ int main() {
   //   cout << myBuffer.get(i) << endl;
   // }
 
-  ptr->add("one");
-  ptr->add("two");
-  ptr->add("three");
-  ptr->add("four");
+  ptrBuffer->add("one");
+  ptrBuffer->add("two");
+  ptrBuffer->add("three");
+  ptrBuffer->add("four");
 
-  for (uint i = 0; i < ptr->size(); i++) {
-    cout << ptr->get(i) << endl;
+  for (uint i = 0; i < ptrBuffer->size(); i++) {
+    cout << ptrBuffer->get(i) << endl;
   }
 
-  ptr.reset();
+  cout << endl;
+
+  cout << "output using iterator" << endl;
+  ring<string>::iterator it = ptrBuffer->begin();
+  for (; it != ptrBuffer->end(); it++) {
+    cout << *it << endl;
+  }
+  cout << endl;
+
+  /* Now the iterator is implemented, you can also use auto range based loop*/
+
+  cout << "output usin range based loop" << endl;
+
+  /* Here I used unique pointer and derefrenced it to get the class intance type */
+  for (auto itr : *ptrBuffer) {
+    cout << itr << endl;
+  }
+
+  cout << endl;
+  ptrBuffer.reset();
   cout << "Above was explicit call" << endl;
 
   return 0;

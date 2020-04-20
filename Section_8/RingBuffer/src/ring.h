@@ -36,6 +36,17 @@ class ring {
   }
 
   T& get(int pos) { return _values[pos]; }
+
+  /* iterator is a nested class but it has no way to access the private members of ring class, so we would need to pass a reference of ring here */
+  iterator begin() {
+    /* here is 0 is first index position */
+    return iterator(0, *this);
+  }
+
+  iterator end() {
+    /* here _size is the last element + 1 index */
+    return iterator(_size, *this);
+  }
 };
 
 // class ring::iterator {
@@ -45,6 +56,30 @@ class ring {
 
 template <class T>
 class ring<T>::iterator {
+ private:
+  uint _pos;
+  ring& _buffer;
+
  public:
-  void print() { cout << "Hello there " << endl; }
+  iterator(uint pos, ring& ref) : _pos(pos), _buffer(ref) {}
+
+  /* There are two version of ++ operator, prefix and postfix, below is for prefix ++ operator */
+  iterator& operator++() {
+    _pos++;
+    return *this;
+  }
+
+  /* Posfix look like this, taking a extra parameter in bracket */
+  iterator& operator++(int) {
+    _pos++;
+    return *this;
+  }
+
+  /* Dereference operator */
+  T& operator*() { return _buffer.get(_pos); }
+
+  /* overloading ! operator */
+  bool operator!=(const iterator& end) const { return (_pos != end._pos); }
+
+  void print() { cout << "Hello from iterator" << endl; }
 };
