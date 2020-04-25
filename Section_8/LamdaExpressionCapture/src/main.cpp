@@ -42,5 +42,18 @@ int main() {
     cout << ++a << "," << b << "," << name << endl;
   }();
 
+  /* There is still a way where without changing the passed value you can change the captured copy in lamda expression without changing the reference value, it will only change the capture copy value
+   * localy like in any call by value function, to do that you have add a keyword mutable and compiler will alow it to change inside lamda expression  */
+
+  int c = 5;
+  /* c captured by value, still we can change the local copy */
+  [c]() mutable {
+    c = 9;
+    cout << c << endl;
+  }();
+
+  /* value of c will not be changed here */
+  cout << c << endl;
+
   return 0;
 }
