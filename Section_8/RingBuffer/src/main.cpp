@@ -14,7 +14,7 @@ using namespace std;
 
 int main() {
   shared_ptr<ring<string>> ptrBuffer;
-  ptrBuffer = make_shared<ring<string>>(3);
+  ptrBuffer = make_shared<ring<string>>(10);
 
   // ring<string> myBuffer(3);
 
@@ -32,9 +32,9 @@ int main() {
   ptrBuffer->add("three");
   ptrBuffer->add("four");
 
-  for (uint i = 0; i < ptrBuffer->size(); i++) {
-    cout << ptrBuffer->get(i) << endl;
-  }
+  // for (uint i = 0; i < ptrBuffer->size(); i++) {
+  //   cout << ptrBuffer->get() << endl;
+  // }
 
   cout << endl;
 
