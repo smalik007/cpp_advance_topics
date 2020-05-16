@@ -16,13 +16,34 @@ using namespace std;
 int main() {
   const int WIDTH = 800;
   const int HEIGHT = 600;
-  FactralBitMap::BitMap bitMap(WIDTH, HEIGHT);
+
+  double xMin = INT32_MAX;
+  double xMax = INT32_MIN;
+
+  double yMin = INT32_MAX;
+  double yMax = INT32_MIN;
+
+  CreateBitMap::BitMap bitMap(WIDTH, HEIGHT);
 
   // bitMap.setPixel(WIDTH / 2, HEIGHT / 2, 255, 255, 255);
 
   for (int y = 0; y < HEIGHT; y++) {
-    for (int x = 0; x < WIDTH; x++) bitMap.setPixel(x, y, 255, 0, 0);
+    for (int x = 0; x < WIDTH; x++) {
+      // bitMap.setPixel(x, y, 255, 0, 0); /* write a complete Red Bitmap file */
+
+      double xFractal = (x - WIDTH / 2) * (2.0 / WIDTH); /* convert and get the range in -1 to +1 range , symmetric about 0 */
+      double yFractal = (y - HEIGHT / 2) * (2.0 / HEIGHT);
+
+      if (xFractal < xMin) xMin = xFractal;
+      if (xFractal > xMax) xMax = xFractal;
+
+      if (yFractal < yMin) yMin = yFractal;
+      if (yFractal > yMax) yMax = yFractal;
+    }
   }
+
+  cout << "xMin : " << xMin << " , xMax : " << xMax << endl;
+  cout << "yMin : " << yMin << " , yMax : " << yMax << endl;
 
   if (bitMap.write("test.bmp")) {
     cout << "BitMap Created Successully" << endl;

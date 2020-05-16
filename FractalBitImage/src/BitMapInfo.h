@@ -13,7 +13,7 @@
 
 using namespace std;
 
-namespace FactralBitMap {
+namespace CreateBitMap {
 #pragma pack(2)
 struct BitMapInfo {
   int32_t headerSize{40};
@@ -28,6 +28,6 @@ struct BitMapInfo {
   int32_t colors{0};
   int32_t importantColors{0};
 };
-}  // namespace FactralBitMap
+}  // namespace CreateBitMap
 
 #endif /* BITMAPINFO_H */

@@ -13,10 +13,10 @@
 #include "BitMapFile.h"
 #include "BitMapInfo.h"
 
-using namespace FactralBitMap;
+using namespace CreateBitMap;
 using namespace std;
 
-namespace FactralBitMap {
+namespace CreateBitMap {
 BitMap::BitMap(int width, int height) : _width(width), _height(height), _pPixel(new uint8_t[width * height * COLOR_CHANNELS]{}) {}
 
 bool BitMap::write(string filename) {
@@ -74,4 +74,4 @@ void BitMap::setPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
 }
 
 BitMap::~BitMap() {}
-}  // namespace FactralBitMap
+}  // namespace CreateBitMap

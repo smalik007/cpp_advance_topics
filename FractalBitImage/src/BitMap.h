@@ -17,7 +17,7 @@ using namespace std;
 
 #define COLOR_CHANNELS 3
 
-namespace FactralBitMap {
+namespace CreateBitMap {
 class BitMap {
  private:
   int _width{0};
@@ -31,6 +31,6 @@ class BitMap {
   ~BitMap();
 };
 
-}  // namespace FactralBitMap
+}  // namespace CreateBitMap
 
 #endif /* BITMAP_H */

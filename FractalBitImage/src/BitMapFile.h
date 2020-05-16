@@ -16,7 +16,7 @@
 
 using namespace std;
 
-namespace FactralBitMap {
+namespace CreateBitMap {
 #pragma pack(2)
 struct BitMapFile {
   char header[2]{'B', 'M'}; /* since it's just 2 bytes, compiler would add a padding of 2 bytes between this and the next element , to avoid padding added pragma pack(n) n could be {1, 2, 4, 8}*/
@@ -24,6 +24,6 @@ struct BitMapFile {
   int32_t reserved{0};
   int32_t dataOffset;
 };
-}  // namespace FactralBitMap
+}  // namespace CreateBitMap
 
 #endif /* BITMAPFILE_H */
