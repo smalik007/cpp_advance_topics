@@ -7,6 +7,7 @@
  */
 
 #include <algorithm>
+#include <cmath>
 #include <cstdint>
 #include <iostream>
 
@@ -33,11 +34,16 @@ int main() {
     for (int x = 0; x < WIDTH; x++) {
       // bitMap.setPixel(x, y, 255, 0, 0); /* write a complete Red Bitmap file */
 
-      double xFractal = (x - WIDTH / 2) * (2.0 / WIDTH); /* convert and get the range in -1 to +1 range , symmetric about 0 */
+      double xFractal = (x - WIDTH / 2 - 200) * (2.0 / HEIGHT); /* convert and get the range in -1 to +1 range , symmetric about 0 */
       double yFractal = (y - HEIGHT / 2) * (2.0 / HEIGHT);
 
       int iteration = FractalBitMap::MandelBrot::getIteration(xFractal, yFractal);
       uint8_t colorIt = (uint8_t)(256 * (double)iteration / FractalBitMap::MandelBrot::MAX_ITERATIONS);
+      /* when itr return 1000 the color value would be 256  */
+      /* In other case it usually be just black */
+
+      colorIt = colorIt * colorIt * colorIt; /* Some random stuff to get random pattern */
+      // colorIt = colorIt * colorIt * 124 * 17671;
 
       bitMap.setPixel(x, y, 0, colorIt, colorIt);
 
