@@ -90,14 +90,24 @@ int main() {
     for (int x = 0; x < WIDTH; x++) {
       int iteration = fractal[y * WIDTH + x];
       double hue = 0.0;
-      /* will never go to MAX_ITERATION = 1000 itr */
-      for (int i = 0; i < iteration; i++) {
-        hue += (double)histogram[i] / total;
+      uint8_t red = 0;
+      uint8_t green = 0;
+      uint8_t blue = 0;
+
+      /* all points that reached maximum iteration would be bounded, so all the green/blue/red are valued as 0, so pow(255, 0) will be = 1 and color would be blackish (inside the mandelbrot set)*/
+      /* Also note that initialliy all the pixels were set to black hence the pixel out the range of -2 to 2 will already be black */
+      /* What we are perticularly interested in are the edge points where the pixel get unbounded and want to color that */
+      /* while when the iteration returns some value  */
+      if (iteration != FractalBitMap::MandelBrot::MAX_ITERATIONS) {
+        /* will never go to MAX_ITERATION = 1000 itr */
+        for (int i = 0; i < iteration; i++) {
+          hue += (double)histogram[i] / total;
+        }
+        /* This loop will give either some fractional value for hue or = 1, in that case pow(255, hue) will be betwenn some value to max 255 */
       }
 
-      uint8_t red = 0;
-      uint8_t green = hue * 255;
-      uint8_t blue = hue * 255;
+      green = pow(255, hue);
+      blue = pow(255, hue);
 
       bitMap.setPixel(x, y, red, green, blue);
     }

@@ -46,10 +46,6 @@ int MandelBrot::getIteration(double x, double y) {
     itr++;
   }
 
-  /* The way the mandle brot set work is here we are limiting the range to 2, so any point which has a radius of 2 or greater whill be considered as out of range (on this 2 no is scaled to some large
-   * value), So itr start from 0 with a complex no c within -1 to +1 range, and we  see the function takes how much iteration to go beyond 2, so either the iterato will reach 1000 (in that case we
-   * color it some color and assume it to be edge of bounded point. While in other case where itr breaks out will be an unbounded point and in that case we mark it as black */
-
   return itr;
 }
 
