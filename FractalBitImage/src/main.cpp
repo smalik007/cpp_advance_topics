@@ -7,9 +7,11 @@
  */
 
 #include <algorithm>
+#include <cstdint>
 #include <iostream>
 
 #include "BitMap.h"
+#include "MandelBrot.h"
 
 using namespace std;
 
@@ -33,6 +35,11 @@ int main() {
 
       double xFractal = (x - WIDTH / 2) * (2.0 / WIDTH); /* convert and get the range in -1 to +1 range , symmetric about 0 */
       double yFractal = (y - HEIGHT / 2) * (2.0 / HEIGHT);
+
+      int iteration = FractalBitMap::MandelBrot::getIteration(xFractal, yFractal);
+      uint8_t colorIt = (uint8_t)(256 * (double)iteration / FractalBitMap::MandelBrot::MAX_ITERATIONS);
+
+      bitMap.setPixel(x, y, 0, colorIt, colorIt);
 
       if (xFractal < xMin) xMin = xFractal;
       if (xFractal > xMax) xMax = xFractal;
