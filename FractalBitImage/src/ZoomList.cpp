@@ -24,6 +24,10 @@ void ZoomList::add(const zoom::Zoom& obj) {
   std::cout << "xCenter : " << _xCenter << ", yCenter : " << _yCenter << ", scale : " << _scale << std::endl;
 }
 
-std::pair<double, double> ZoomList::doZoom(int x, int y) { return std::pair<double, double>(0.0, 0.0); }
+std::pair<double, double> ZoomList::doZoom(int x, int y) {
+  double xFractal = (x - _width / 2) * _scale + _xCenter;
+  double yFractal = (y - _height / 2) * _scale + _yCenter;
+  return std::pair<double, double>(xFractal, yFractal);
+}
 
 }  // namespace zoomList

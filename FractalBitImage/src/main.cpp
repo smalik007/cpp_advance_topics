@@ -32,7 +32,7 @@ int main() {
   CreateBitMap::BitMap bitMap(WIDTH, HEIGHT);
 
   zoomList::ZoomList obj(WIDTH, HEIGHT);
-  obj.add(zoom::Zoom(WIDTH / 2, HEIGHT / 2, 1));
+  obj.add(zoom::Zoom(WIDTH / 2, HEIGHT / 2, (2.0 / WIDTH)));
 
   // bitMap.setPixel(WIDTH / 2, HEIGHT / 2, 255, 255, 255);
   unique_ptr<int[]> histogram(new int[FractalBitMap::MandelBrot::MAX_ITERATIONS]{});
@@ -45,7 +45,11 @@ int main() {
       double xFractal = (x - WIDTH / 2 - 200) * (2.0 / HEIGHT); /* convert and get the range in -1 to +1 range , symmetric about 0 */
       double yFractal = (y - HEIGHT / 2) * (2.0 / HEIGHT);
 
-      int iteration = FractalBitMap::MandelBrot::getIteration(xFractal, yFractal);
+      std::pair<double, double> coord = obj.doZoom(x, y);
+
+      // int iteration = FractalBitMap::MandelBrot::getIteration(xFractal, yFractal);
+
+      int iteration = FractalBitMap::MandelBrot::getIteration(coord.first, coord.second);
       fractal[y * WIDTH + x] = iteration;
       if (iteration < FractalBitMap::MandelBrot::MAX_ITERATIONS) {
         histogram[iteration]++; /* How many pixel (x,y) in the image get a perticular iteration value  */
