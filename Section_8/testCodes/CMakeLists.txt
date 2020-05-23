@@ -13,24 +13,21 @@ else ()
   set (CMAKE_CXX_STANDARD 11)
 endif ()
 
-include_directories("/usr/local/ButlerIPU/include")
-
 # add CFLAGS
-add_definitions("-O3 -Wall -g -lstdc++ -lstdc++fs -Wl,-rpath -fpermissive -Wno-unused-variable -Wno-unused-function -Wno-unused-but-set-variable -std=c++11")
+add_definitions("-O3 -Wall -g -lstdc++ -Wl,-rpath -fpermissive -Wno-unused-variable -Wno-unused-function -Wno-unused-but-set-variable -std=c++11")
 
 # make a list of all source files for ButkerIPUServer
 file(GLOB SOURCES "src/*.h" "src/*.cpp")
 
-link_directories("/usr/local/ButlerIPU/lib")
 
 # x86_64 settings
 add_executable(RunProgram ${SOURCES})
 
+
+
 target_link_libraries(RunProgram
-  pthread
-  boost_filesystem
-  boost_system
-  boost_iostreams
-  archive
-  zstd
+pthread
+boost_filesystem
+boost_system
 )
+

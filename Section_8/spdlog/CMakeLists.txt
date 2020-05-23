@@ -15,6 +15,7 @@ endif ()
 
 include_directories("/usr/local/ButlerIPU/include")
 # include_directories("/usr/local/ButlerIPU/include")
+
 # add CFLAGS
 add_definitions("-O3 -Wall -g -lstdc++ -lstdc++fs -Wl,-rpath -fpermissive -Wno-unused-variable -Wno-unused-function -Wno-unused-but-set-variable -std=c++11")
 
@@ -22,6 +23,7 @@ add_definitions("-O3 -Wall -g -lstdc++ -lstdc++fs -Wl,-rpath -fpermissive -Wno-u
 file(GLOB SOURCES "src/*.h" "src/*.cpp")
 
 link_directories("/usr/local/ButlerIPU/lib")
+link_directories("/home/suhail/Documents/zstd/build/cmake/release/lib")
 
 # x86_64 settings
 add_executable(RunProgram ${SOURCES})
@@ -31,6 +33,7 @@ target_link_libraries(RunProgram
   boost_filesystem
   boost_system
   boost_iostreams
+  zstd
 
 # /usr/lib/x86_64-linux-gnu/libboost_filesystem.so.1.65.1
 # /usr/lib/x86_64-linux-gnu/libboost_system.so

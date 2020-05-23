@@ -20,6 +20,7 @@
 #include <boost/iostreams/device/file.hpp>
 #include <boost/iostreams/filter/gzip.hpp>
 #include <boost/iostreams/filter/zlib.hpp>
+#include <boost/iostreams/filter/zstd.hpp>
 #include <boost/iostreams/filtering_streambuf.hpp>
 #include <chrono>
 #include <cstdlib>
@@ -225,7 +226,7 @@ SPDLOG_INLINE void compressed_rotating_file_sink<Mutex>::compress_() {
       boost::iostreams::filtering_streambuf<boost::iostreams::output> out;
       out.set_auto_close(true);
 
-      out.push(boost::iostreams::gzip_compressor());
+      out.push(boost::iostreams::zstd_compressor(boost::iostreams::zstd_params(boost::iostreams::zstd::default_compression)));
       out.push(ofile);
       //      std::cout << "out.is_complete(): " << out.is_complete() << endl;
       //      std::cout << "ifs.is_open()? "     << file.is_open()     << endl;

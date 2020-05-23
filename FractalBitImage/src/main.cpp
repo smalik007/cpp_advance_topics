@@ -106,8 +106,9 @@ int main() {
         /* This loop will give either some fractional value for hue or = 1, in that case pow(255, hue) will be betwenn some value to max 255 */
       }
 
-      green = pow(255, hue);
-      blue = pow(255, hue);
+      // green = pow(128, hue);
+      // blue = pow(255, hue);
+      red = pow(255, hue);
 
       bitMap.setPixel(x, y, red, green, blue);
     }
