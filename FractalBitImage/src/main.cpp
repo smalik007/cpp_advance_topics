@@ -14,6 +14,8 @@
 
 #include "BitMap.h"
 #include "MandelBrot.h"
+#include "Zoom.h"
+#include "ZoomList.h"
 
 using namespace std;
 
@@ -28,6 +30,9 @@ int main() {
   double yMax = INT32_MIN;
 
   CreateBitMap::BitMap bitMap(WIDTH, HEIGHT);
+
+  zoomList::ZoomList obj(WIDTH, HEIGHT);
+  obj.add(zoom::Zoom(WIDTH / 2, HEIGHT / 2, 1));
 
   // bitMap.setPixel(WIDTH / 2, HEIGHT / 2, 255, 255, 255);
   unique_ptr<int[]> histogram(new int[FractalBitMap::MandelBrot::MAX_ITERATIONS]{});
