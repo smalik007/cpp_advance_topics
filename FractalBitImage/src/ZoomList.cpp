@@ -21,7 +21,7 @@ void ZoomList::add(const zoom::Zoom& obj) {
   /* new Scale */
   _scale *= obj.scale;
 
-  std::cout << "xCenter : " << _xCenter << ", yCenter : " << _yCenter << ", scale : " << _scale << std::endl;
+  // std::cout << "xCenter : " << _xCenter << ", yCenter : " << _yCenter << ", scale : " << _scale << std::endl;
 }
 
 std::pair<double, double> ZoomList::doZoom(int x, int y) {
