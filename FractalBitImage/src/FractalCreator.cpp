@@ -1,5 +1,7 @@
 #include "FractalCreator.h"
 
+#include <assert.h>
+
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -34,6 +36,23 @@ void FractalCreator::addColorGradientRange(double itrRange, const rgb::RGB& colo
     _totalItrForRange.push_back(0);
   }
   _itrInit = true;
+}
+
+int FractalCreator::getRangeIndx(int itr) const {
+  int range = 0;
+
+  for (int i = 1; i < _itrRange.size(); ++i) {
+    range = i;
+    if (_itrRange[i] > itr) {
+      break;
+    }
+  }
+
+  range--;
+
+  assert(range > -1);
+  assert(range < _itrRange.size());
+  return range;
 }
 
 void FractalCreator::calculateIteration() {
@@ -90,11 +109,11 @@ void FractalCreator::drawFractal() {
   for (int i = 0; i < mandel::MandelBrot::MAX_ITERATIONS; i++) {
     total += _histogram[i];
   }
-  cout << "total : " << total << endl;
+  // cout << "total : " << total << endl;
 
-  rgb::RGB startColor(0, 0, 0);
-  rgb::RGB endColor(0, 255, 255);
-  rgb::RGB diffColor = endColor - startColor;
+  // rgb::RGB startColor(0, 0, 0);
+  // rgb::RGB endColor(0, 255, 255);
+  // rgb::RGB diffColor = endColor - startColor;
 
   for (int y = 0; y < _height; y++) {
     for (int x = 0; x < _width; x++) {
@@ -106,20 +125,29 @@ void FractalCreator::drawFractal() {
       uint8_t green = 0;
       uint8_t blue = 0;
 
+      int range = getRangeIndx(iteration);
+      int totalItrInRange = _totalItrForRange[range];
+      int rangeStart = _itrRange[range];
+
+      rgb::RGB startColor = _colorRange[range];
+      rgb::RGB endColor = _colorRange[range + 1];
+      rgb::RGB diffColor = endColor - startColor;
+
       /* all points that reached maximum iteration would be bounded, so all the green/blue/red are valued as 0, so pow(255, 0) will be = 1 and color would be blackish (inside the mandelbrot set)*/
       /* Also note that initialliy all the pixels were set to black hence the pixel out the range of -2 to 2 will already be black */
       /* What we are perticularly interested in are the edge points where the pixel get unbounded and want to color that */
       /* while when the iteration returns some value  */
       if (iteration != mandel::MandelBrot::MAX_ITERATIONS) {
-        for (int i = 0; i <= iteration; i++) {
-          hue += (double)_histogram[i] / total;
+        for (int i = rangeStart; i <= iteration; i++) {
+          // hue += (double)_histogram[i] / total;
+          hue += _histogram[i];
         }
         /* This loop will give either some fractional value for hue or = 1, in that case pow(255, hue) will be betwenn some value to max 255 */
       }
 
-      red = startColor.r + pow(diffColor.r, hue);
-      green = startColor.g + pow(diffColor.g, hue);
-      blue = startColor.b + pow(diffColor.b, hue);
+      red = startColor.r + pow(diffColor.r, (double)(hue / totalItrInRange));
+      green = startColor.g + pow(diffColor.g, (double)(hue / totalItrInRange));
+      blue = startColor.b + pow(diffColor.b, (double)(hue / totalItrInRange));
 
       // green = pow(128, hue);
       // blue = pow(255, hue);
@@ -142,13 +170,13 @@ void FractalCreator::calculateRangeTotals() {
     _totalItrForRange[rangeIndex] += pixel;
   }
 
-  int overallItr = 0;
+  // int overallItr = 0;
 
-  for (int x : _totalItrForRange) {
-    overallItr += x;
-    cout << "Range: " << x << endl;
-  }
-  cout << overallItr << endl;
+  // for (int x : _totalItrForRange) {
+  //   overallItr += x;
+  //   cout << "Range: " << x << endl;
+  // }
+  // cout << overallItr << endl;
 }
 
 void FractalCreator::writeBitMap(const std::string& name) {

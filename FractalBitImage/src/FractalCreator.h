@@ -50,6 +50,7 @@ class FractalCreator {
   void addZoom(const zoom::Zoom& obj);
   void createFractalImage(const std::string& name);
   void addColorGradientRange(double itrRange, const rgb::RGB& color);
+  int getRangeIndx(int itr) const;
 };
 
 }  // namespace Fractal

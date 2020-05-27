@@ -26,10 +26,12 @@ int main() {
   cin >> wantZoom;
 
   Fractal::FractalCreator fractalCrt(WIDTH, HEIGHT, wantZoom);
-  fractalCrt.addColorGradientRange(0.0, rgb::RGB(0, 255, 0));
-  fractalCrt.addColorGradientRange(0.3, rgb::RGB(0, 255, 0));
-  fractalCrt.addColorGradientRange(0.5, rgb::RGB(0, 0, 255));
-  fractalCrt.addColorGradientRange(1.0, rgb::RGB(0, 0, 255));
+  fractalCrt.addColorGradientRange(0.0, rgb::RGB(0, 0, 0));
+  fractalCrt.addColorGradientRange(0.3, rgb::RGB(255, 0, 0));
+  fractalCrt.addColorGradientRange(0.5, rgb::RGB(255, 255, 0));
+  fractalCrt.addColorGradientRange(1.0, rgb::RGB(255, 255, 255));
+
+  cout << fractalCrt.getRangeIndx(450) << endl;
 
   if (wantZoom) {
     cout << "coordX : ";
