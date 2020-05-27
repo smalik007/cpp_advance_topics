@@ -12,9 +12,7 @@
 
 using namespace std;
 
-using namespace FractalBitMap;
-
-namespace FractalBitMap {
+namespace mandel {
 
 MandelBrot::MandelBrot(/* args */) {}
 
@@ -49,4 +47,4 @@ int MandelBrot::getIteration(double x, double y) {
   return itr;
 }
 
-}  // namespace FractalBitMap
+}  // namespace mandel

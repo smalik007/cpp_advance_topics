@@ -9,7 +9,7 @@
 #ifndef MANDEL_BROT_H
 #define MANDEL_BROT_H
 
-namespace FractalBitMap {
+namespace mandel {
 
 class MandelBrot {
  public:
@@ -20,6 +20,6 @@ class MandelBrot {
   ~MandelBrot();
   static int getIteration(double x, double y);
 };
-}  // namespace FractalBitMap
+}  // namespace mandel
 
 #endif

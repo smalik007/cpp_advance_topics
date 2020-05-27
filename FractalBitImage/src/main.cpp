@@ -9,7 +9,6 @@
 #include <iostream>
 
 #include "FractalCreator.h"
-#include "RGB.h"
 
 using namespace std;
 
@@ -17,7 +16,6 @@ int main() {
   const int WIDTH = 800;
   const int HEIGHT = 600;
   const std::string imageName = "test1.bmp";
-  Fractal::FractalCreator fractalCrt(WIDTH, HEIGHT);
 
   double coordX;
   double coordY;
@@ -26,6 +24,12 @@ int main() {
 
   cout << "Zoom (Yes :1, No : 0) :";
   cin >> wantZoom;
+
+  Fractal::FractalCreator fractalCrt(WIDTH, HEIGHT, wantZoom);
+  fractalCrt.addColorGradientRange(0.0, rgb::RGB(0, 255, 0));
+  fractalCrt.addColorGradientRange(0.3, rgb::RGB(0, 255, 0));
+  fractalCrt.addColorGradientRange(0.5, rgb::RGB(0, 0, 255));
+  fractalCrt.addColorGradientRange(1.0, rgb::RGB(0, 0, 255));
 
   if (wantZoom) {
     cout << "coordX : ";
@@ -36,9 +40,8 @@ int main() {
     cin >> scaleValue;
     fractalCrt.addZoom(zoom::Zoom(coordX, HEIGHT - coordY, scaleValue));
   }
-  fractalCrt.calculateIteration(wantZoom);
-  fractalCrt.drawFractal();
-  fractalCrt.writeBitMap(imageName);
+
+  fractalCrt.createFractalImage(imageName);
 
   return 0;
 }
