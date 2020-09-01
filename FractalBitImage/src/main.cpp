@@ -27,9 +27,9 @@ int main() {
 
   Fractal::FractalCreator fractalCrt(WIDTH, HEIGHT, wantZoom);
   fractalCrt.addColorGradientRange(0.0, rgb::RGB(0, 0, 0));
-  fractalCrt.addColorGradientRange(0.3, rgb::RGB(255, 0, 0));
-  fractalCrt.addColorGradientRange(0.5, rgb::RGB(255, 255, 0));
-  fractalCrt.addColorGradientRange(1.0, rgb::RGB(255, 255, 255));
+  fractalCrt.addColorGradientRange(0.3, rgb::RGB(217, 87, 154));
+  fractalCrt.addColorGradientRange(0.5, rgb::RGB(0, 0, 0));
+  fractalCrt.addColorGradientRange(1.0, rgb::RGB(0, 0, 0));
 
   cout << fractalCrt.getRangeIndx(450) << endl;
 

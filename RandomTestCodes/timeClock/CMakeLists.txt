@@ -22,7 +22,3 @@ file(GLOB SOURCES "src/*.h" "src/*.cpp")
 # x86_64 settings
 add_executable(RunProgram ${SOURCES})
 
-target_link_libraries(RunProgram
-  pthread
-)
-

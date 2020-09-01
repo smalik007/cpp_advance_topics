@@ -8,6 +8,8 @@
 
 #include <iostream>
 #include <vector>
+#include <list>
+#include <queue>
 using namespace std;
 
 int main() {
@@ -31,7 +33,14 @@ int main() {
   str.push_back("one");
   str.push_back("two");
 
-  // cout << str.size() << endl;
+  cout << str.size() << endl;
+
+  std::string mytest = str.front();
+  cout << mytest << endl;
+
+  std::string mytest2 = str.back();
+  cout << mytest2 << endl;
+
   // cout << str[1] << endl;
 
   // one way to iterate through the vector
@@ -43,10 +52,25 @@ int main() {
   // recommended way
   // begin give the pointer to the first element of the vector
   // end give the pointer after the end element of the vector (remember pointer will point to end element + next location)
-  vector<string>::iterator it = str.begin();
-  for (; it != str.end(); it++) {
-    cout << *it << endl;
-  }
+  // vector<string>::iterator it = str.begin();
+  // for (; it != str.end(); it++) {
+  //   cout << *it << endl;
+  // }
+
+  std::queue <std::string> myList;
+  myList.push("suhail");
+  myList.push("malik");
+  myList.push("Aliya");
+  myList.push("Rohan");
+
+  cout << myList.size() << endl;
+  cout << myList.back() << " , " << myList.front() << endl;
+
+  myList.pop();
+  cout << myList.size() << endl;
+  cout << myList.back() << " , " << myList.front() << endl;
+
+
 
   return 0;
 }

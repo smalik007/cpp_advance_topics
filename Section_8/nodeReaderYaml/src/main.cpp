@@ -9,6 +9,7 @@
 
 using namespace std;
 #define MASK_SUB_CLASS_ERROR (0x00FFFFFFFFFFFFFF)
+#define MASK_MAIN_CLASS_ERROR (0xFF00000000000000)
 
 struct ErrorMapping_s {
   std::string mainErrorName;
@@ -201,12 +202,22 @@ int findIndexPosition(uint64_t error) {
   return pos;
 }
 
+static void processErrorFlag(uint64_t errorFlag) {
+  uint64_t mainError = (errorFlag & MASK_SUB_CLASS_ERROR);
+  uint8_t subClassError = (uint8_t)((uint64_t)((errorFlag & MASK_MAIN_CLASS_ERROR) >> 56));
+  printf("0x%016llX\n", errorFlag);
+  printf("0x%016llX\n", mainError);
+  printf("0x%0x\n", subClassError);
+}
+
 int main() {
   NavErrorMap mapObj("ImagesPollSaveError.yaml", cv::FileStorage::READ);
   std::vector<uint8_t> subclass;
+
   // mapObj.getSubClassErrorValues(subclass, 0);
   // mapObj.printErrorMap();
-  uint64_t error_flag = 0x0000000002000000;
+  uint64_t error_flag = 0x8600000002000000;
+  processErrorFlag(error_flag);
   int bitPos = findIndexPosition(error_flag);
   if (bitPos != -1) {
     cout << "Bit pos : " << bitPos << endl;

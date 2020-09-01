@@ -25,4 +25,3 @@ add_executable(RunProgram ${SOURCES})
 target_link_libraries(RunProgram
   pthread
 )
-
