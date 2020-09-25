@@ -57,7 +57,11 @@
         "set": "cpp",
         "string": "cpp",
         "regex": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "variant": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp",
+        "*.ipp": "cpp"
     },
     "editor.formatOnSave": true
 }

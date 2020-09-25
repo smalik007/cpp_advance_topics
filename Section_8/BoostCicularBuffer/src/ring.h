@@ -12,6 +12,7 @@
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/timer/timer.hpp>
+#include <iostream>
 #include <mutex>
 
 template <class T>
@@ -22,6 +23,8 @@ class RingBuffer {
   typedef typename container_type::value_type value_type;
   typedef typename boost::call_traits<value_type>::param_type param_type;
   typedef std::shared_ptr<RingBuffer<T>> RingBufferSPtrType;
+  typedef RingBuffer<T> RingBufferClassType;
+  typedef RingBuffer<T>* RingBufferPtrType;
 
  public:
   RingBuffer() = delete;
@@ -47,6 +50,36 @@ class RingBuffer {
   bool isNotEmpty() const { return (!_container.empty()); }
 
   void clear() { _container.clear(); }
+
+  void move(RingBufferPtrType _toContainer) {
+    std::unique_lock<std::mutex> lock(_mutex);
+    while (!_container.empty()) {
+      param_type pItem = _container.back();
+      _toContainer->pushFront(pItem);
+      _container.pop_back();
+    }
+    _mutex.unlock();
+  }
+
+  // void move(RingBufferSPtrType _toContainer) {
+  //   std::unique_lock<std::mutex> lock(_mutex);
+  //   while (!_container.empty()) {
+  //     param_type pItem = _container.back();
+  //     _toContainer->pushFront(pItem);
+  //     _container.pop_back();
+  //   }
+  //   _mutex.unlock();
+  // }
+
+  // void move(RingBufferClassType& _toContainer) {
+  //   std::unique_lock<std::mutex> lock(_mutex);
+  //   while (!_container.empty()) {
+  //     param_type pItem = _container.back();
+  //     _toContainer.pushFront(pItem);
+  //     _container.pop_back();
+  //   }
+  //   _mutex.unlock();
+  // }
 
  private:
   container_type _container;

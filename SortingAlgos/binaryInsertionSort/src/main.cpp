@@ -11,7 +11,8 @@
    4: put the element on searched index and rearrange the array to +1 index after that
  *
  * Time Complexity
- * Best and average case log (n)
+ * Best and average case O(log (n))
+ * worst case O(n^2)
  *
  */
 
