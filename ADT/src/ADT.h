@@ -7,7 +7,7 @@ class Array {
   int capacity;
   int length; /* current element in the array */
               //   void swap(int* x, int* y);
-  void autoCapacity();
+  void autoCapacity(int newCap);
   void freeMem();
 
  public:
@@ -37,12 +37,11 @@ class Array {
   float avg();
 
   bool isSorted(sort_order_e order = ASSENDING);
-  //   int LinearSearch(Array* arr, int key);
+  int linearSearch(int key);
+  int binarySearch(int key); /* Array needs to be sorted */
 
-  //   int BinarySearch(Array arr, int key);
-  //   int RBinSearch(int a[], int l, int h, int key); /* Recursive */
-  //   int Get(Array arr, int index);
-  //   void Set(Array* arr, int index, int x);
+  int get(int index);
+  void set(int index, int x);
 
   //   void Reverse(Array* arr);
   //   void InsertSort(Array* arr, int x);

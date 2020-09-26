@@ -13,6 +13,12 @@ Array::Array(int s) : A(nullptr), capacity(s), length(0) {
 
 Array::Array(int arr[], int l, int s) : A(nullptr), capacity(s), length(l) {
   this->A = new int[this->capacity * sizeof(int)];
+
+  /* Validate capacity */
+  if (this->capacity < l) {
+    autoCapacity(l);
+  }
+
   for (int idx = 0; idx < l; idx++) {
     this->A[idx] = arr[idx];
   }
@@ -31,8 +37,8 @@ void Array::freeMem() {
 
 Array::~Array() { freeMem(); }
 
-void Array::autoCapacity() {
-  this->capacity = this->capacity * 2;
+void Array::autoCapacity(int newCap) {
+  this->capacity = newCap * 2;
   int* tempA = new int[capacity * sizeof(int)];
 
   for (int idx = 0; idx < length; idx++) {
@@ -72,7 +78,7 @@ int Array::size() { return length; }
 
 void Array::push(int x) {
   if (this->full()) {
-    this->autoCapacity();
+    this->autoCapacity(this->capacity);
   }
   this->A[length++] = x;
 }
@@ -86,9 +92,14 @@ int Array::pop() {
 }
 
 void Array::insert(int index, int x) {
+  /* Validate index */
+  if (index < 0) {
+    return;
+  }
+
   for (int idx = length; idx > index; idx--) {
     if (this->full()) {
-      this->autoCapacity();
+      this->autoCapacity(this->capacity);
     }
     this->A[idx] = this->A[idx - 1];
   }
@@ -97,9 +108,9 @@ void Array::insert(int index, int x) {
 }
 
 int Array::remove(int index) {
-  if (this->empty()) {
-    std::cout << "Error : No element to delete";
-    return 0;
+  /* Validate index */
+  if ((index < 0) || (index >= length)) {
+    return -1;
   }
 
   int temp = this->A[index];
@@ -186,4 +197,60 @@ bool Array::isSorted(sort_order_e order) {
     }
   }
   return true;
+}
+
+int Array::linearSearch(int key) {
+  if (this->empty()) {
+    return -1;
+  }
+
+  for (int idx = 0; idx < length; idx++) {
+    if (this->A[idx] == key) {
+      return idx;
+    }
+  }
+
+  return -1;
+}
+
+int Array::binarySearch(int key) {
+  if (this->empty()) {
+    return -1;
+  }
+  if (!this->isSorted(ASSENDING)) {
+    std::cout << "Error : Can't Perform binary Search elements are not sorted\n";
+    return -1;
+  }
+
+  int start = 0;
+  int end = length - 1;
+  int mid = 0;
+  while (start <= end) {
+    mid = (start + end) / 2;
+
+    if (this->A[mid] == key) {
+      return mid;
+    } else if (this->A[mid] < key) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+  return -1;
+}
+
+int Array::get(int index) {
+  /* Validate index */
+  if ((index < 0) || (index >= length)) {
+    return -1;
+  }
+  return this->A[index];
+}
+void Array::set(int index, int x) {
+  /* Validate index */
+  if ((index < 0) || (index >= length)) {
+    return;
+  }
+
+  this->A[index] = x;
 }
