@@ -6,7 +6,7 @@ class Array {
   int* A;
   int capacity;
   int length; /* current element in the array */
-              //   void swap(int* x, int* y);
+  void swap(int* x, int* y);
   void autoCapacity(int newCap);
   void freeMem();
 
@@ -43,7 +43,8 @@ class Array {
   int get(int index);
   void set(int index, int x);
 
-  //   void Reverse(Array* arr);
-  //   void InsertSort(Array* arr, int x);
-  //   void Rearrange(Array* arr);
+  void reverse();
+  void merge(Array* obj);
+  void Union(Array* obj);
+  void intersection(Array* obj);
 };

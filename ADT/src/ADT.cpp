@@ -254,3 +254,94 @@ void Array::set(int index, int x) {
 
   this->A[index] = x;
 }
+
+void Array::swap(int* x, int* y) {
+  int temp = *x;
+  *x = *y;
+  *y = temp;
+}
+
+void Array::reverse() {
+  for (int i = 0, j = length - 1; i <= j; i++, j--) {
+    swap(&this->A[i], &this->A[j]);
+  }
+}
+
+void Array::merge(Array* obj) {
+  int i = 0, j = 0, k = 0;
+
+  int* temp = new int[sizeof(int) * (this->capacity + obj->capacity)];
+
+  while (i < this->length && j < obj->length) {
+    if (this->A[i] < obj->A[j])
+      temp[k++] = this->A[i++];
+    else
+      temp[k++] = obj->A[j++];
+  }
+
+  /* Fill remaining element of the arrays that did not finish in above loop
+  Only one of the below loop will execute, As the other would have been already exhuasted in above while */
+  for (; i < this->length; i++) temp[k++] = this->A[i];
+
+  for (; j < obj->length; j++) temp[k++] = obj->A[j];
+
+  this->length = this->length + obj->length;
+  this->capacity = this->capacity + obj->capacity;
+
+  freeMem();
+  this->A = temp;
+}
+
+/* If at any idex element is equal in both the array include on one from that index */
+void Array::Union(Array* obj) {
+  int i = 0, j = 0, k = 0;
+
+  int* temp = new int[sizeof(int) * (this->capacity + obj->capacity)];
+
+  while (i < this->length && j < obj->length) {
+    if (this->A[i] < obj->A[j])
+      temp[k++] = this->A[i++];
+    else if (this->A[i] > obj->A[j])
+      temp[k++] = obj->A[j++];
+    else {
+      temp[k++] = this->A[i++];
+      j++;
+    }
+  }
+
+  /* Fill remaining element of the arrays that did not finish in above loop
+  Only one of the below loop will execute, As the other would have been already exhuasted in above while */
+  for (; i < this->length; i++) temp[k++] = this->A[i];
+
+  for (; j < obj->length; j++) temp[k++] = obj->A[j];
+
+  this->length = k;
+  this->capacity = this->capacity + obj->capacity;
+
+  freeMem();
+  this->A = temp;
+}
+
+/* If at any idex element is equal only Include them */
+void Array::intersection(Array* obj) {
+  int i = 0, j = 0, k = 0;
+
+  int* temp = new int[sizeof(int) * (this->capacity + obj->capacity)];
+
+  while (i < this->length && j < obj->length) {
+    if (this->A[i] < obj->A[j])
+      i++;
+    else if (this->A[i] > obj->A[j])
+      j++;
+    else {
+      temp[k++] = this->A[i++];
+      j++;
+    }
+  }
+
+  this->length = k;
+  this->capacity = this->capacity + obj->capacity;
+
+  freeMem();
+  this->A = temp;
+}
