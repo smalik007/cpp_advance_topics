@@ -6,13 +6,13 @@
 
 Array::Array(int s) : A(nullptr), capacity(s), length(0) {
   /* c++ syntax */
-  this->A = new int[this->capacity * sizeof(int)];
+  this->A = new int[this->capacity];
   /* using malloc */
   //   this->A = (int*)malloc(this->size * sizeof(int));
 }
 
 Array::Array(int arr[], int l, int s) : A(nullptr), capacity(s), length(l) {
-  this->A = new int[this->capacity * sizeof(int)];
+  this->A = new int[this->capacity];
 
   /* Validate capacity */
   if (this->capacity < l) {
@@ -39,7 +39,7 @@ Array::~Array() { freeMem(); }
 
 void Array::autoCapacity(int newCap) {
   this->capacity = newCap * 2;
-  int* tempA = new int[capacity * sizeof(int)];
+  int* tempA = new int[capacity];
 
   for (int idx = 0; idx < length; idx++) {
     tempA[idx] = this->A[idx];
@@ -270,7 +270,7 @@ void Array::reverse() {
 void Array::merge(Array* obj) {
   int i = 0, j = 0, k = 0;
 
-  int* temp = new int[sizeof(int) * (this->capacity + obj->capacity)];
+  int* temp = new int[this->capacity + obj->capacity];
 
   while (i < this->length && j < obj->length) {
     if (this->A[i] < obj->A[j])
@@ -296,7 +296,7 @@ void Array::merge(Array* obj) {
 void Array::Union(Array* obj) {
   int i = 0, j = 0, k = 0;
 
-  int* temp = new int[sizeof(int) * (this->capacity + obj->capacity)];
+  int* temp = new int[this->capacity + obj->capacity];
 
   while (i < this->length && j < obj->length) {
     if (this->A[i] < obj->A[j])
@@ -326,7 +326,7 @@ void Array::Union(Array* obj) {
 void Array::intersection(Array* obj) {
   int i = 0, j = 0, k = 0;
 
-  int* temp = new int[sizeof(int) * (this->capacity + obj->capacity)];
+  int* temp = new int[this->capacity + obj->capacity];
 
   while (i < this->length && j < obj->length) {
     if (this->A[i] < obj->A[j])
