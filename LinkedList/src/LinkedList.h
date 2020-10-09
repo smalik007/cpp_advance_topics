@@ -23,6 +23,9 @@ class LinkedList {
   int pop_front();
   int pop_back();
   size_t size();
+  int max();
+  int min();
+  bool empty();
   friend ostream& operator<<(ostream& os, const LinkedList& list);
 };
 
@@ -108,5 +111,42 @@ int LinkedList::pop_back() {
 }
 
 size_t LinkedList::size() { return _size; }
+
+int LinkedList::max() {
+  int maxData = INT32_MIN;
+  if (head == nullptr) {
+    return maxData;
+  }
+  Node* temp = head;
+  while (temp != nullptr) {
+    if (temp->data > maxData) {
+      maxData = temp->data;
+    }
+    temp = temp->next;
+  }
+  return maxData;
+}
+
+int LinkedList::min() {
+  int minData = INT32_MAX;
+  if (head == nullptr) {
+    return minData;
+  }
+  Node* temp = head;
+  while (temp != nullptr) {
+    if (temp->data < minData) {
+      minData = temp->data;
+    }
+    temp = temp->next;
+  }
+  return minData;
+}
+
+bool LinkedList::empty() {
+  if (head == nullptr) {
+    return true;
+  }
+  return false;
+}
 
 LinkedList::~LinkedList() {}
