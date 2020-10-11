@@ -26,6 +26,22 @@ void test_code() {
   cout << "Pop from tail: " << myNumbers.pop_back() << endl;
   cout << "Size: " << myNumbers.size() << ", " << myNumbers;
   cout << "Max : " << myNumbers.max() << " Min : " << myNumbers.min() << endl;
+
+  cout << "Find 3? : " << myNumbers.linearSearch(3) << endl;
+  cout << "Find 100? : " << myNumbers.linearSearch(100) << endl;
+
+  myNumbers.insert(1, 0);
+  cout << "Insert at Beg, Size : " << myNumbers.size() << ", " << myNumbers << endl;
+
+  myNumbers.insert(10, myNumbers.size());
+  cout << "Insert at last :  Size : " << myNumbers.size() << ", " << myNumbers << endl;
+
+  myNumbers.insert(10, 3);
+  cout << "Insert at Beg :  Size : " << myNumbers.size() << ", " << myNumbers << endl;
+
+  /* Invalid index */
+  myNumbers.insert(10, 100);
+  cout << "Insert at Beg :  Size : " << myNumbers.size() << ", " << myNumbers << endl;
 }
 
 int main() {

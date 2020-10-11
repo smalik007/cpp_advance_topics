@@ -26,6 +26,8 @@ class LinkedList {
   int max();
   int min();
   bool empty();
+  bool linearSearch(int key);
+  void insert(int data, size_t index);
   friend ostream& operator<<(ostream& os, const LinkedList& list);
 };
 
@@ -147,6 +149,44 @@ bool LinkedList::empty() {
     return true;
   }
   return false;
+}
+
+bool LinkedList::linearSearch(int key) {
+  if (head == nullptr) {
+    return false;
+  }
+  Node* temp = head;
+  while (temp != nullptr) {
+    if (temp->data == key) {
+      return true;
+    }
+    temp = temp->next;
+  }
+  return false;
+}
+
+void LinkedList::insert(int data, size_t index) {
+  /* Validate */
+  if (index < 0 || index > _size) {
+    return;
+  }
+  /* Insert at the front */
+  if (index == 0) {
+    push_front(data);
+  } else if (index == _size) {
+    push_back(data);
+  } else {
+    Node *temp, *prev;
+    temp = new Node;
+    temp->data = data;
+    prev = head;
+    for (size_t idx = 0; idx < index; idx++) {
+      prev = prev->next;
+    }
+    temp->next = prev->next;
+    prev->next = temp;
+    _size++;
+  }
 }
 
 LinkedList::~LinkedList() {}
