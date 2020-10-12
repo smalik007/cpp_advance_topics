@@ -44,7 +44,22 @@ void test_code() {
   cout << "Insert at Beg :  Size : " << myNumbers.size() << ", " << myNumbers << endl;
 }
 
+void test_code2() {
+  LinkedList myNumbers;
+  myNumbers.insertSort(5);
+  myNumbers.insertSort(6);
+  myNumbers.insertSort(9);
+  myNumbers.insertSort(10);
+  myNumbers.insertSort(7);
+  myNumbers.insertSort(11);
+  myNumbers.insertSort(1);
+  myNumbers.insertSort(2);
+
+  cout << "sorted list : " << myNumbers << " , Size :" << myNumbers.size() << endl;
+}
+
 int main() {
   test_code();
+  test_code2();
   return 0;
 }
