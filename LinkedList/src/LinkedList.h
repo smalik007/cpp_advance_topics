@@ -31,6 +31,8 @@ class LinkedList {
   void insertSort(int data);
   int deleteItem(size_t index);
   bool isSorted();
+  void reverse();
+  void merge(LinkedList& second);
   friend ostream& operator<<(ostream& os, const LinkedList& list);
 };
 
@@ -282,6 +284,89 @@ bool LinkedList::isSorted() {
   }
 
   return return_status;
+}
+
+void LinkedList::reverse() {
+  if (this->empty()) {
+    return;
+  }
+  /* using three pointer sliding */
+  Node* p = head;
+  Node* q = nullptr;
+  Node* r = nullptr;
+
+  while (p != nullptr) {
+    /* slide pointers */
+    r = q;
+    q = p;
+    p = p->next;
+
+    /* reverse the link  */
+    q->next = r;
+  }
+  /* new head after complete reverse */
+  head = q;
+}
+
+void LinkedList::merge(LinkedList& secondList) {
+  /* Validation */
+  /* if current list is empty directly point to head of second list */
+  if (this->empty()) {
+    this->head = secondList.head;
+  } else if (secondList.empty()) {
+    /* if second list is empty no merging is required */
+    return;
+  }
+
+  Node* first = this->head;
+  Node* second = secondList.head;
+  Node* mergedHead = nullptr;
+  Node* lastMerged = nullptr;
+
+  if (first->data < second->data) {
+    mergedHead = lastMerged = first;
+    first = first->next;
+    lastMerged->next = nullptr;
+  } else {
+    mergedHead = lastMerged = second;
+    second = second->next;
+    lastMerged->next = nullptr;
+  }
+
+  while (first != nullptr && second != nullptr) {
+    if (first->data < second->data) {
+      lastMerged->next = first;
+      lastMerged = first;
+      first = first->next;
+      lastMerged->next = nullptr;
+    } else {
+      lastMerged->next = second;
+      lastMerged = second;
+      second = second->next;
+      lastMerged->next = nullptr;
+    }
+  }
+
+  /* link for the remaining elements */
+  if (first != nullptr) {
+    lastMerged->next = first;
+  } else {
+    lastMerged->next = second;
+  }
+
+  /* new Head */
+  this->head = mergedHead;
+
+  Node* temp;
+  temp = this->head;
+  /* new Size */
+  this->_size = this->_size + secondList.size();
+
+  /* rearrange last element */
+  while (temp != nullptr) {
+    this->last = temp;
+    temp = temp->next;
+  }
 }
 
 LinkedList::~LinkedList() {}

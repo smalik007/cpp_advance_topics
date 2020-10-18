@@ -81,6 +81,26 @@ void test_code2() {
   myNumbers.pop_front();
   cout << myNumbers;
   cout << "isSorted: " << myNumbers.isSorted() << endl;
+
+  myNumbers.reverse();
+  cout << "reverse: " << myNumbers;
+
+  myNumbers.reverse();
+  cout << "reverseAgain: " << myNumbers;
+
+  LinkedList second;
+  second.push_back(0);
+  second.push_back(3);
+  second.push_back(4);
+  second.push_back(11);
+
+  cout << "second: " << second;
+  cout << "size : " << second.size() << endl;
+
+  myNumbers.merge(second);
+
+  cout << "newMergedList: " << myNumbers;
+  cout << "size : " << myNumbers.size() << endl;
 }
 
 int main() {
