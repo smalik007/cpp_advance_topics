@@ -71,6 +71,16 @@ void test_code2() {
 
   cout << "Delete(-10) : " << myNumbers.deleteItem(-10) << " , " << myNumbers;
   cout << "Size :" << myNumbers.size() << endl;
+
+  cout << "isSorted: " << myNumbers.isSorted() << endl;
+  // myNumbers.push_back(1);
+  myNumbers.push_front(10);
+  cout << myNumbers;
+  cout << "isSorted: " << myNumbers.isSorted() << endl;
+
+  myNumbers.pop_front();
+  cout << myNumbers;
+  cout << "isSorted: " << myNumbers.isSorted() << endl;
 }
 
 int main() {

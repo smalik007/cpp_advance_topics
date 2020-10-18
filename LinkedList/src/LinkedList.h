@@ -30,6 +30,7 @@ class LinkedList {
   void insert(int data, size_t index);
   void insertSort(int data);
   int deleteItem(size_t index);
+  bool isSorted();
   friend ostream& operator<<(ostream& os, const LinkedList& list);
 };
 
@@ -262,4 +263,25 @@ int LinkedList::deleteItem(size_t index) {
   }
   return item;
 }
+
+bool LinkedList::isSorted() {
+  /* empty list is always sorted */
+  if (this->empty()) {
+    return true;
+  }
+  bool return_status = true;
+  Node* prev = head;
+  Node* curr = head->next;
+  while (prev != nullptr && curr != nullptr) {
+    if (prev->data > curr->data) {
+      return_status = false;
+      break;
+    }
+    prev = curr;
+    curr = curr->next;
+  }
+
+  return return_status;
+}
+
 LinkedList::~LinkedList() {}
