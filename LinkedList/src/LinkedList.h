@@ -374,6 +374,8 @@ LinkedList::~LinkedList() {
   while (temp != nullptr) {
     Node* element = temp;
     temp = temp->next;
+    this->_size--;
     delete element;
   }
+  cout << "Destructor is called " << endl;
 }

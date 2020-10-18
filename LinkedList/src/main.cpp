@@ -101,6 +101,15 @@ void test_code2() {
 
   cout << "newMergedList: " << myNumbers;
   cout << "size : " << myNumbers.size() << endl;
+
+  {
+    /* Check destructor is working */
+    LinkedList third;
+    third.push_back(0);
+    third.push_back(3);
+    third.push_back(4);
+    third.push_back(11);
+  }
 }
 
 int main() {
