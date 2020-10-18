@@ -29,6 +29,7 @@ class LinkedList {
   bool linearSearch(int key);
   void insert(int data, size_t index);
   void insertSort(int data);
+  int deleteItem(size_t index);
   friend ostream& operator<<(ostream& os, const LinkedList& list);
 };
 
@@ -217,4 +218,40 @@ void LinkedList::insertSort(int data) {
   }
 }
 
+int LinkedList::deleteItem(size_t index) {
+  /* check if the list is empty */
+  if (this->empty()) {
+    return -1;
+  }
+
+  /* Check For valid index */
+  if (index < 0 || index >= _size) {
+    return -1;
+  }
+
+  Node* temp;
+  temp = head;
+  int item = -1;
+  if (index == 0) {
+    head = head->next;
+    this->_size--;
+    item = temp->data;
+    delete temp;
+  } else {
+    Node* prev;
+    size_t i = 0;
+    for (i = 0; i < index; i++) {
+      prev = temp;
+      temp = temp->next;
+    }
+    prev->next = temp->next;
+    item = temp->data;
+    if (prev->next == nullptr) {
+      this->last = prev;
+    }
+    this->_size--;
+    delete temp;
+  }
+  return item;
+}
 LinkedList::~LinkedList() {}

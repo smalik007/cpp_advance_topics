@@ -56,6 +56,15 @@ void test_code2() {
   myNumbers.insertSort(2);
 
   cout << "sorted list : " << myNumbers << " , Size :" << myNumbers.size() << endl;
+
+  cout << "Delete(0) : " << myNumbers.deleteItem(0) << " , " << myNumbers;
+  cout << "Size :" << myNumbers.size() << endl;
+
+  cout << "Delete(4) : " << myNumbers.deleteItem(4) << " , " << myNumbers;
+  cout << "Size :" << myNumbers.size() << endl;
+
+  cout << "Delete(5) : " << myNumbers.deleteItem(5) << " , " << myNumbers;
+  cout << "Size :" << myNumbers.size() << endl;
 }
 
 int main() {
