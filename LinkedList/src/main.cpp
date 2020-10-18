@@ -65,6 +65,12 @@ void test_code2() {
 
   cout << "Delete(5) : " << myNumbers.deleteItem(5) << " , " << myNumbers;
   cout << "Size :" << myNumbers.size() << endl;
+
+  cout << "Delete(50) : " << myNumbers.deleteItem(50) << " , " << myNumbers;
+  cout << "Size :" << myNumbers.size() << endl;
+
+  cout << "Delete(-10) : " << myNumbers.deleteItem(-10) << " , " << myNumbers;
+  cout << "Size :" << myNumbers.size() << endl;
 }
 
 int main() {

@@ -225,9 +225,10 @@ int LinkedList::deleteItem(size_t index) {
   }
 
   /* Check For valid index */
-  if (index < 0 || index >= _size) {
-    return -1;
-  }
+  /* This check may not required as the index pass is already an unsigned var and we are checking size by checking if the traversing has not reached a nullptr */
+  // if (index < 0 || index >= this->_size) {
+  //   return -1;
+  // }
 
   Node* temp;
   temp = head;
@@ -240,10 +241,17 @@ int LinkedList::deleteItem(size_t index) {
   } else {
     Node* prev;
     size_t i = 0;
-    for (i = 0; i < index; i++) {
+    /* Check whether temp has not reached a null, For cases where index > size of the list is passed*/
+    for (i = 0; i < index && temp; i++) {
       prev = temp;
       temp = temp->next;
     }
+
+    /* Extra check in case our _size variable in not maintained correctly */
+    if (temp == nullptr) {
+      return -1;
+    }
+
     prev->next = temp->next;
     item = temp->data;
     if (prev->next == nullptr) {
