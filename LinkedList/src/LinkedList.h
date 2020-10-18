@@ -369,4 +369,11 @@ void LinkedList::merge(LinkedList& secondList) {
   }
 }
 
-LinkedList::~LinkedList() {}
+LinkedList::~LinkedList() {
+  Node* temp = this->head;
+  while (temp != nullptr) {
+    Node* element = temp;
+    temp = temp->next;
+    delete element;
+  }
+}
