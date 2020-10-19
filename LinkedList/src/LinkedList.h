@@ -9,10 +9,17 @@ class Node {
   Node* next;
 };
 
+class DoubleNode : public Node {
+ public:
+  Node* prev;
+};
+
 class LinkedList {
  private:
   Node* head;
   Node* last;
+
+ protected:
   size_t _size;
 
  public:
@@ -378,4 +385,83 @@ LinkedList::~LinkedList() {
     delete element;
   }
   cout << "Destructor is called " << endl;
+}
+
+class DoubleLinkedList : public LinkedList {
+ private:
+  DoubleNode* head;
+  DoubleNode* last;
+
+ public:
+  DoubleLinkedList();
+  void push_back(int data);
+  void push_front(int data);
+  void displayRevers();  // this api is special as doubleList has prev link in the node so it can traverse back also, this will also verify that nodes are coorrectly linked in reverse also
+  friend ostream& operator<<(ostream& os, const DoubleLinkedList& list);
+};
+
+DoubleLinkedList::DoubleLinkedList() : head(nullptr), last(nullptr) {}
+
+void DoubleLinkedList::push_back(int data) {
+  if (head == nullptr) {
+    head = new DoubleNode;
+    head->data = data;
+    head->next = nullptr;
+    head->prev = nullptr;
+    last = head;
+    _size++;
+  } else {
+    DoubleNode* temp = new DoubleNode;
+    temp->data = data;
+    temp->next = nullptr;
+    temp->prev = last;
+    last->next = temp;
+    last = temp;
+    _size++;
+  }
+}
+
+void DoubleLinkedList::push_front(int data) {
+  DoubleNode* temp = new DoubleNode;
+  temp->data = data;
+  temp->prev = nullptr;
+  temp->next = nullptr;
+
+  if (head == nullptr) {
+    temp->next = nullptr;
+    temp->prev = nullptr;
+    head = temp;
+    last = head;
+    _size++;
+  } else {
+    temp->next = head;
+    temp->prev = nullptr;
+    head->prev = temp;
+    head = temp;
+    _size++;
+  }
+}
+
+ostream& operator<<(ostream& os, const DoubleLinkedList& list) {
+  if (list.head == nullptr) {
+    return os;
+  }
+  DoubleNode* temp = list.head;
+  while (temp != nullptr) {
+    cout << temp->data << " ";
+    temp = (DoubleNode*)temp->next;
+  }
+  cout << "\n";
+  return os;
+}
+
+void DoubleLinkedList::displayRevers() {
+  DoubleNode* temp = last;
+
+  /* this nullptr is for head->prev node */
+  while (temp != nullptr) {
+    cout << temp->data << " ";
+    temp = (DoubleNode*)temp->prev;
+  }
+  cout << endl;
 }

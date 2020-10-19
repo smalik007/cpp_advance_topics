@@ -112,8 +112,23 @@ void test_code2() {
   }
 }
 
+void test_code3() {
+  DoubleLinkedList biDirList;
+  biDirList.push_back(1);
+  biDirList.push_back(4);
+  biDirList.push_back(6);
+  biDirList.push_back(8);
+  biDirList.push_back(10);
+  biDirList.push_back(12);
+  biDirList.push_front(0);
+  cout << biDirList;
+  cout << "Size : " << biDirList.size() << endl;
+  biDirList.displayRevers();
+}
+
 int main() {
-  test_code();
-  test_code2();
+  // test_code();
+  // test_code2();
+  test_code3();
   return 0;
 }
