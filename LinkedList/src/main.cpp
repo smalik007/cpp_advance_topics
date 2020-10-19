@@ -124,6 +124,27 @@ void test_code3() {
   cout << biDirList;
   cout << "Size : " << biDirList.size() << endl;
   biDirList.displayRevers();
+
+  cout << "pop front : " << biDirList.pop_front() << endl;
+  cout << "pop back : " << biDirList.pop_back() << endl;
+
+  cout << biDirList;
+  cout << "Size : " << biDirList.size() << endl;
+  biDirList.displayRevers();
+
+  biDirList.insert(0, 0);
+  biDirList.insert(5, 3);
+
+  cout << biDirList;
+  cout << "Size : " << biDirList.size() << endl;
+  biDirList.displayRevers();
+
+  cout << biDirList.deleteItem(1) << endl;
+  cout << biDirList.deleteItem(5) << endl;
+
+  cout << biDirList;
+  cout << "Size : " << biDirList.size() << endl;
+  biDirList.displayRevers();
 }
 
 int main() {

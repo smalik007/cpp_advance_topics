@@ -397,6 +397,11 @@ class DoubleLinkedList : public LinkedList {
   void push_back(int data);
   void push_front(int data);
   void displayRevers();  // this api is special as doubleList has prev link in the node so it can traverse back also, this will also verify that nodes are coorrectly linked in reverse also
+  int pop_front();
+  int pop_back();
+  void insert(int data, size_t index);
+  // void insertSort(int data);
+  int deleteItem(size_t index);
   friend ostream& operator<<(ostream& os, const DoubleLinkedList& list);
 };
 
@@ -464,4 +469,103 @@ void DoubleLinkedList::displayRevers() {
     temp = (DoubleNode*)temp->prev;
   }
   cout << endl;
+}
+
+int DoubleLinkedList::pop_front() {
+  if (head == nullptr) {
+    return -1;
+  } else {
+    DoubleNode* temp = head;
+    DoubleNode* temp2 = (DoubleNode*)head->next;
+    int data = temp->data;
+    temp2->prev = nullptr;
+    head = temp2;
+    delete temp;
+    _size--;
+    return data;
+  }
+}
+
+int DoubleLinkedList::pop_back() {
+  if (head == nullptr) {
+    return -1;
+  }
+
+  DoubleNode* temp = last;
+  last = (DoubleNode*)last->prev;
+  last->next = nullptr;
+  int data = temp->data;
+  delete temp;
+  _size--;
+  return data;
+}
+
+void DoubleLinkedList::insert(int data, size_t index) {
+  /* Validate */
+  if (index < 0 || index > _size) {
+    return;
+  }
+  /* Insert at the front */
+  if (index == 0) {
+    this->push_front(data);
+  } else if (index == _size) {
+    this->push_back(data);
+  } else {
+    DoubleNode* temp;
+    temp = new DoubleNode;
+    temp->next = nullptr;
+    temp->prev = nullptr;
+    temp->data = data;
+
+    DoubleNode* trav = head;
+    DoubleNode* nextNode = nullptr;
+    for (size_t idx = 0; idx < index - 1; idx++) {
+      trav = (DoubleNode*)trav->next;
+    }
+
+    nextNode = (DoubleNode*)trav->next;
+    temp->next = nextNode;
+    nextNode->prev = temp;
+
+    temp->prev = trav;
+    trav->next = temp;
+    _size++;
+  }
+}
+
+int DoubleLinkedList::deleteItem(size_t index) {
+  /* check if the list is empty */
+  if (head == nullptr) {
+    return -1;
+  }
+
+  /* Check For valid index */
+  /* This check may not required as the index pass is already an unsigned var and we are checking size by checking if the traversing has not reached a nullptr */
+  // if (index < 0 || index >= this->_size) {
+  //   return -1;
+  // }
+
+  int item = -1;
+  if (index == 0) {
+    item = this->pop_front();
+  } else if (index == _size - 1) {
+    item = this->pop_back();
+  } else {
+    DoubleNode* trav = head;
+    DoubleNode* nextNode = nullptr;
+    size_t i = 0;
+    /* Check whether temp has not reached a null, For cases where index > size of the list is passed*/
+    for (i = 0; i < index - 1 && trav; i++) {
+      trav = (DoubleNode*)trav->next;
+    }
+
+    DoubleNode* temp = (DoubleNode*)trav->next; /* Node to delete */
+    nextNode = (DoubleNode*)temp->next;
+    nextNode->prev = trav;
+    trav->next = nextNode;
+    item = temp->data;
+    this->_size--;
+    delete temp;
+  }
+  return item;
 }
